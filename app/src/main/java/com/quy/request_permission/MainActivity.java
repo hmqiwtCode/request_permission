@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("DEBUG", "PERMISSIONS NOT GRANTED");
                     if(!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
                             !shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)){
+                        Log.i("DEBUG", "PERMISSIONS NOT GRANTED1");
                         requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, PERMISSION_CODE);
                     }
                 }else {
@@ -99,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode){
             case PERMISSION_CODE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
                     txtPermission.setText("Granted permission");
                 }else{
-                    if(!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
+                    if(!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE) &&
                             !shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)){
                         new AlertDialog.Builder(this)
                                 .setMessage("Mở setting app và tick vào quyền app yêu cầu")
